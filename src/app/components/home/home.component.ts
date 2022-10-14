@@ -22,8 +22,14 @@ export class HomeComponent implements OnInit {
   }
 
   private blurImageFaces(){
-    this._blurService.blurImageFaces(this.fileToUpload as File).subscribe((res) => {
+    this._blurService.blurImageFaces(this.fileToUpload as File).subscribe((res: Blob) => {
       console.log(res);
+      var blob = new Blob([res], { type: 'image/jpeg' });
+      var url = window.URL.createObjectURL(blob);
+      var anchor = document.createElement("a");
+      anchor.download = "test.jpeg";
+      anchor.href = url;
+      anchor.click();
     }, error => {
       console.log(error.message);
     });

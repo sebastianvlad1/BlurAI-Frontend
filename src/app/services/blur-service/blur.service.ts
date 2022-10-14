@@ -14,6 +14,6 @@ export class BlurService {
     let blurImageFacesUrl: string = environment.baseUrl + environment.blurImageFaces;
     let formData:FormData = new FormData();
         formData.append('image', file, file.name);
-    return this.http.post(blurImageFacesUrl, formData);
+    return this.http.post(blurImageFacesUrl, formData,{ responseType: "blob" });
   }
 }
